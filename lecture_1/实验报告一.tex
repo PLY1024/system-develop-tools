@@ -334,6 +334,12 @@ Windows可以访问\url{https://git-scm.com/download/win}下载 Git for Windows 
 
 \subsection{日志操作}
 通过以下命令查看提交日志：\mintinline{shell}|git log|，日志中HEAD所指向的是当前分支。
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Git log.png}
+    \caption{Git log}
+    \label{fig:Git log}
+\end{figure}
 
 一些常用选项：
 \begin{itemize}
@@ -364,6 +370,12 @@ Windows可以访问\url{https://git-scm.com/download/win}下载 Git for Windows 
 在需要初始化的文件夹下执行：\mintinline{shell}|git init|，将该文件夹初始化为Git仓库。执行以下命令来追踪指定的文件并进行初始提交。
 \mint{shell}|git add <filename>|
 \mint{shell}|git commit -m '<message>'|
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Git init.png}
+    \caption{Git init}
+    \label{fig:Git init}
+\end{figure}
 
 \subsubsection{克隆远程仓库}
 通过执行\mintinline{shell}|git clone <url>|，将在当前目录下创建一个与所克隆仓库同名的文件夹，其中包含仓库中的所有项目文件，也可以添加\mintinline{shell}|<dirname>|来自行指定本地文件夹名称。
@@ -372,6 +384,12 @@ Git支持https://或SSH协议与远程仓库进行连接。
 
 \subsection{查看当前文件状态}
 使用\mintinline{shell}|git status|查看仓库内文件所处的状态，添加\mintinline{shell}|-s|选项使得输出更加简洁。对于一个提交后未更改文件的仓库来说，当前的工作目录是“clean”的。\mintinline{shell}|git status|命令会列出当前所在的分支，未跟踪的文件（即未被提交过的文件），与暂存中的文件（即在执行提交命令时会被提交的文件）。通过执行\mintinline{shell}|git add|对文件进行跟踪，意味着将该文件添加到下次提交的内容中。
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Git status.png}
+    \caption{Git status}
+    \label{fig:Git status}
+\end{figure}
 
 注意，\mintinline{shell}|git commit -m '<message>'|命令提交的是暂存区中的文件，而非工作目录内的文件。
 
@@ -381,6 +399,12 @@ Git支持https://或SSH协议与远程仓库进行连接。
 
 \subsection{提交更新}
 提交命令\mintinline{shell}|git commit|会启动文本编辑器，添加\mintinline{shell}|-m '<message>'|可以直接输入提交说明。
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Git commit.png}
+    \caption{Git commit}
+    \label{fig:Git commit}
+\end{figure}
 
 通过添加\mintinline{shell}|-a|选项使Git自动将已跟踪文件暂存并提交，略过\mintinline{shell}|git add|步骤。
 
@@ -411,6 +435,12 @@ Git支持https://或SSH协议与远程仓库进行连接。
 
 \subsection{推送本地分支}
 \mintinline{shell}|git push origin main|以将本地的main分支推送到origin仓库。\mintinline{shell}|-u|使得将来使用\mintinline{shell}|git push|即可向仓库推送更改。
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Git push.png}
+    \caption{Git push}
+    \label{fig:Git push}
+\end{figure}
 
 \subsubsection{使用token推送项目}
 在Github的个人主页下，Settings->Developer settings->Personal access tokens获取一个token，在\mintinline{shell}|git push|命令要求输入密码时使用。
