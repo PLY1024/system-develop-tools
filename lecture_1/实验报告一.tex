@@ -31,7 +31,7 @@
 \newpage
 
 \section{ \LaTeX 学习感悟}
-\LaTeX 相比 markdown 更具有上手难度，从一开始就需要记住代码，而且写错了就直接报错，比较有挫败感。不过比较让人欣慰的是在记住基本代码和折腾好格式之后， \LaTeX 基本上不需要在排版上耗费精力，不用像Word那样和无形的大手对抗，除了不能实时预览外，基本没什么缺点。而且格式模板的使用十分简单，有模板基本能做到Word那样的快速编辑。
+\LaTeX 相比 Markdown 更具有上手难度，从一开始就需要记住代码，而且写错了就直接报错，比较有挫败感。不过比较让人欣慰的是在记住基本代码和折腾好格式之后， \LaTeX 基本上不需要在排版上耗费精力，不用像Word那样和无形的大手对抗，除了不能实时预览外，基本没什么缺点。而且格式模板的使用十分简单，有模板基本能做到Word那样的快速编辑。
 
 在学习中遇到的最大的坑是Overleaf作为在线编译器，为编译中文而修改编译方式需要自行寻找一番，而且使用 \url{https://oi-wiki.org/tools/latex} 中的导入包方式会直接报错，
 \begin{figure}[hbt]
@@ -71,7 +71,7 @@ Overleaf上比较折腾的是换字体。我个人不太喜欢默认的等宽字
 \section{ \LaTeX 知识点}
 
 \subsection{ \LaTeX 安装}
-可以在\url{https://www.tug.org/texlive/}下载TeX Live。 \LaTeX 有众多的编译器可以使用，我选择overleaf作为编辑器，主要是其基于云端，基本开箱即用，并且能够实时编译，极大地省去了安装本地编译器的折腾过程。而且Overleaf可以辅助插入图片和列表，极大地省去了写命令的过程。
+可以在\url{https://www.tug.org/texlive/}下载TeX Live。 \LaTeX 有众多的编译器可以使用，我选择Overleaf作为编辑器，主要是其基于云端，基本开箱即用，并且能够实时编译，极大地省去了安装本地编译器的折腾过程。而且Overleaf可以辅助插入图片和列表，极大地省去了写命令的过程。
 
 \subsection{源文件的基本结构}
 分为导言区和正文区。导言区设定文档的格式，语言，导入需要的包。正文区用于显示文字、图表、公式等内容。
@@ -101,9 +101,12 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 \mintinline{Latex}|\documentclass[a4paper, 10pt]{article}|将纸张大小设置为a4，主要字号大小设置为10pt。
 
 \subsection{设置标题，作者，日期与目录}
-设置标题：\mint{Latex}|\title{}|
-设置作者：\mint{Latex}|\author|
-设定日期为今日：\mint{Latex}|\date{\today}|
+设置标题：\mintinline{Latex}|\title{}|
+
+设置作者：\mintinline{Latex}|\author|
+
+设定日期为今日：\mintinline{Latex}|\date{\today}|
+
 最后需要\mintinline{Latex}|\maketitle|以使标题生效，且以上的字体均可以改变字形和大小。在\mintinline{Latex}|\maketitle|后加上\mintinline{Latex}|\newpage|可以让标题单独成页。
 
 在使用\mintinline{Latex}|\tableofcontents|后 \LaTeX 会自动生成目录，同样可以单独成页。
@@ -181,8 +184,8 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 
 \subsubsection{行内代码}
 \begin{itemize}
-    \item \mintinline{Latex}|\verb||| \verb|print("Man!")|
-    \item \mintinline{Latex}|\mintinline{Latex}||| \mintinline{python}|print("Man!")|
+    \item \mintinline{Latex}|\verb|||：\verb|print("Man!")|
+    \item \mintinline{Latex}|\mintinline{python}|||：\mintinline{python}|print("Man!")|
 \end{itemize}
 
 \subsubsection{代码块}
@@ -205,11 +208,11 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 \begin{listing}[htb]
 	\begin{minted}{python}
     import time
-    print("hello")
+    print("Man!")
     \end{minted}
 \end{listing}
 
-\mintinline{Latex}|\mint|还能显示单独成行的代码。
+\mintinline{Latex}|\mint{}|||还能显示单独成行的代码。
 
 \subsection{列表}
 \subsubsection{无序列表}
@@ -254,7 +257,7 @@ d = {k \varphi(n) + 1} \over e
 可以借助在线公式网站\url{https://editor.codecogs.com/}辅助公式的编辑.
 
 \subsection{显示表格}
-\mintinline{Latex}|\begin{table}[h] \end{table}|设定表格环境，\mintinline{Latex}|\caption{title}|设置表格标题，在\mintinline{Latex}|\begin{tabular}{c c c} \end{tabular}|之间设置表格内容。表格格式中c代表格内内容居中，l、r代表左、右对齐，p可以自由设定宽度，自动换行，c、l、r间可以添加分割标记，|与||形成不同的分隔。\mintinline{Latex}|\hline|添加横向分割，用法类似|。表格的内容通过\&分隔，以双斜杠进行换行。\mintinline{Latex}|\centering|可以居中显示表格。可以对表格进行引用。
+\mintinline{Latex}|\begin{table}[h] \end{table}|设定表格环境，\mintinline{Latex}|\caption{title}|设置表格标题，在\mintinline{Latex}|\begin{tabular}{c c c} \end{tabular}|之间设置表格内容。表格格式中c代表格内内容居中，l、r代表左、右对齐，p可以自由设定宽度，自动换行，c、l、r间可以添加分割标记，|与||形成不同的分隔。\mintinline{Latex}|\hline|添加横向分割，用法类似|。表格的内容通过\&分隔，以双斜杠进行换行。\mintinline{Latex}|\centering|可以居中显示表格。可以对表格进行引用。注意，表格的标题要放置于表格上方。
 \begin{table}[htb]
     \centering
     \caption{标题要放置于表格上方}
@@ -266,7 +269,7 @@ d = {k \varphi(n) + 1} \over e
     \end{tabular}
     \label{tab:my_label}
 \end{table}
-注意，表格的标题要放置于表格上方。
+
 
 \subsection{设置引用}
 用\mintinline{Latex}|\label{label}|设置引用时的标签，用\mintinline{Latex}|\ref{label}|进行引用。
@@ -451,6 +454,15 @@ Git支持https://或SSH协议与远程仓库进行连接。
 在shell运行\mintinline{shell}|ssh-keygen -t rsa -C “<mailbox>”|生成SSH密钥，在Github添加公钥进行配对。通过运行
 \mintinline{shell}|ssh -T git@github.com|以验证是否成功。
 
+\subsection{撤销提交}
+\mintinline{shell}|git reset HEAD~ --soft|，在\mintinline{shell}|~|后跟数字指定撤销过去某一次的提交。
+不同参数的意义：
+\begin{itemize}
+    \item \mintinline{shell}|--soft|代表撤销提交但仍在暂存区中保留文件
+    \item \mintinline{shell}|--hard|代表撤销提交且复原回上一次提交时的状态，所有的修改都会丢失
+    \item 不加参数代表撤销提交，且不在暂存区中保留文件，但所做的修改仍然存在
+\end{itemize}
+
 \subsection{分支操作}
 \subsubsection{查看分支}
 \mintinline{shell}|git branch --list|，其中\*所处的是当前分支.
@@ -486,7 +498,7 @@ Git支持https://或SSH协议与远程仓库进行连接。
 \subsubsection{多次存储}
 \mintinline{shell}|git stash push|将文件当前的修改存储为一个副本。
 
-\mintinline{shell}|git stach list|能列出存储的文件列表，序号由小到大表示存储时间由近到远。
+\mintinline{shell}|git stash list|能列出存储的文件列表，序号由小到大表示存储时间由近到远。
 
 \subsubsection{恢复储存的文件}
 \mintinline{shell}|git stash pop|将文件恢复为最近一次保存的状态，并删除该次备份。
@@ -498,15 +510,6 @@ Git支持https://或SSH协议与远程仓库进行连接。
 
 \subsection{复原文件为仓库中保存的状态}
 \mintinline{shell}|git checkout -- <filename>|，即使用库中的文件替换掉本地的文件。
-
-\subsection{撤销提交}
-\mintinline{shell}|git reset HEAD~ --soft|，在\mintinline{shell}|~|后跟数字指定撤销过去某一次的提交。
-不同参数的意义：
-\begin{itemize}
-    \item \mintinline{shell}|--soft|代表撤销提交但仍在暂存区中保留文件
-    \item \mintinline{shell}|--hard|代表撤销提交且复原回上一次提交时的状态，所有的修改都会丢失
-    \item 不加参数代表撤销提交，且不在暂存区中保留文件，但所做的修改仍然存在
-\end{itemize}
 
 \subsection{变基}
 \mintinline{shell}|git rebase {branchname}|相当于在另一个分支上进行了本分支的修改，还可以指定对前n次提交进行修改：\mintinline{shell}|git rebase -i HEAD~{<number>}|
