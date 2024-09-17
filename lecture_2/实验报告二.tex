@@ -2,6 +2,7 @@
 
 % \usepackage{ctex}
 \usepackage{graphicx} % 图片
+\usepackage{subfigure} %子图片
 \usepackage{minted} % 代码
 \usepackage{listings} % 代码
 \usepackage{enumerate} % 有序列表
@@ -40,7 +41,7 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 
 不过shell的进阶操作还是有一些学习成本，毕竟命令行界面没有图形界面那么直观，有时还会出现莫名其妙的bug。Linux上的某些操作还需要格外谨慎，用\mintinline{shell}|mv|删错东西可没有后悔药可吃，移动错文件位置有时找半天找不回来，这些都是使用时要格外避免的。
 
-注意自己写的脚本文件和python文件需要添加执行权限才能运行。
+注意自己写的脚本文件和Python文件需要添加执行权限才能运行。
 
 \section{shell知识点}
 \subsection{基本操作}
@@ -48,9 +49,9 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 创建文件夹：\mintinline{shell}|mkdir|
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Mkdir.png}
+    \includegraphics[width=0.75\linewidth]{mkdir_1.png}
     \caption{mkdir}
-    \label{fig:Mkdir}
+    \label{fig:mkdir_1}
 \end{figure}
 
 -m参数后接rwx等，可以同时设定文件夹的权限。
@@ -59,9 +60,9 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 创建文件：\mintinline{shell}|touch|
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{Touch.png}
+    \includegraphics[width=0.75\linewidth]{touch_1.png}
     \caption{touch}
-    \label{fig:touch}
+    \label{fig:touch_1}
 \end{figure}
 
 \mintinline{shell}|touch|还有设定文件修改时间和文件时间戳的功能。
@@ -70,9 +71,9 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 列出文件：\mintinline{shell}|ls|
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Ls.png}
+    \includegraphics[width=0.75\linewidth]{ls_1.png}
     \caption{ls}
-    \label{fig:ls}
+    \label{fig:ls_1}
 \end{figure}
 
 不加参数仅会列出文件名，-lh以利于人类理解的方式输出，即以M或K为单位，--color=auto自动通过颜色区分文件和目录，--block-size=K将文件单位设为K，也可设为M。
@@ -81,26 +82,26 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 打印内容：\mintinline{shell}|echo|
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Echo.png}
+    \includegraphics[width=0.75\linewidth]{echo_1.png}
     \caption{echo}
-    \label{fig:echo}
+    \label{fig:echo_1}
 \end{figure}
 
 \mintinline{shell}|echo|可以打印纯文本，也可以配合\$与shell中的变量名打印信息，还可以与重定向操作符配合向文件中写入信息。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Shell.png}
+    \includegraphics[width=0.75\linewidth]{shell_1.png}
     \caption{显示当前的shell}
-    \label{fig:Shell}
+    \label{fig:shell_1}
 \end{figure}
 
 \subsubsection{修改权限}
 修改权限：\mintinline{shell}|chmod <-cfvR> <filename>|
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Chmod.png}
+    \includegraphics[width=0.75\linewidth]{chmod_1.png}
     \caption{chmod}
-    \label{fig:chmod}
+    \label{fig:chmod_1}
 \end{figure}
 
 权限的授予对象有owner，group，other，只有owner和root用户可以修改权限。权限命令的格式有两大类：符号模式和八进制语法。符号模式使用u，g，o代表三个群体，+，-代表增加或减少权限，w，r，x代表写、读、执行三个权限，可以组成命令如u+x。八进制语法即以4，2，1代表读、写、执行，使用\mintinline{shell}|chmod 777|可以为所有用户赋予权限。
@@ -109,26 +110,26 @@ shell的上手难度并不算大，掌握mkdir，cd，ls，touch，mv，rm，vim
 查看用法：\mintinline{shell}|man <command>|
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Man.png}
+    \includegraphics[width=0.75\linewidth]{man_1.png}
     \caption{man}
-    \label{fig:man}
+    \label{fig:man_1}
 \end{figure}
 
 man也有替代品，比如tldr。tldr是Too Long; Didn’t Read的缩写，能够提供更加简洁的提示和说明。使用\mintinline{shell}|sudo pacman -S tldr|安装tldr，在安装完成后要先\mintinline{shell}|tldr -u|加载缓存，再输入查询命令。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Tldr.png}
+    \includegraphics[width=0.75\linewidth]{tldr_1.png}
     \caption{tldr}
-    \label{fig:tldr}
+    \label{fig:tldr_1}
 \end{figure}
 
 \subsection{向文件内写入具有特殊含义的字符}
 配合使用\mintinline{shell}|echo > >> ' '|能将具有特殊含义的字符写入文件中。比如将\#!/bin/sh写入文件，由于\#和\!在shell中有特殊含义，需要使用\mintinline{shell}|' '|包裹整个语句，再使用\mintinline{shell}|>|将输出重定向至文件。这里要注意\mintinline{shell}|> >>|的区别，前者会将文件内容清空再进行写入，而后者是进行追加。同时要注意\mintinline{shell}|' ' " "|的区别，单引号仅保留其中字符的文字意义，而双引号会使其中的特殊字符产生特殊意义，借助这一点可以在\mintinline{shell}|echo|语句中一同输出某些变量的值。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{To file.png}
+    \includegraphics[width=0.75\linewidth]{to_file_1.png}
     \caption{向文件写入特殊字符}
-    \label{fig:to file}
+    \label{fig:to_file_1}
 \end{figure}
 
 注意\mintinline{shell}|2>|代表错误输出，后面接\mintinline{shell}|&1|能将错误输出重定向到标准输出。如\mint{shell}|command >> file 2>&1|
@@ -139,34 +140,34 @@ man也有替代品，比如tldr。tldr是Too Long; Didn’t Read的缩写，能�
 输出文件内容：\mintinline{shell}|cat|，能将文件内容输出到标准输出流，也可以配合重定向操作符将结果输出到文件，以下是使用\mintinline{shell}|cat|查看电池电量的操作：
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Cat.png}
+    \includegraphics[width=0.75\linewidth]{cat_1.png}
     \caption{cat}
-    \label{fig:cat}
+    \label{fig:cat_1}
 \end{figure}
 
 \subsection{在文件或输出流中搜索}
 搜索字符串：\mintinline{shell}|grep|，能在文件或输出流中搜寻匹配的字符串，十分好用的寻找工具，配合管道和重定向就能将搜寻到内容保存到文件。如将semester脚本输出的某一特定行存入文件。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Grep.png}
+    \includegraphics[width=0.75\linewidth]{grep_1.png}
     \caption{grep}
-    \label{fig:grep}
+    \label{fig:grep_1}
 \end{figure}
 
 \subsection{搜索文件}
 搜索文件：\mintinline{shell}|find|，能够依据拓展名，大小，修改时间等一系列条件搜索文件，效率很高。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Find_name.png}
+    \includegraphics[width=0.75\linewidth]{find_name_1.png}
     \caption{根据名称搜索}
-    \label{fig:find name}
+    \label{fig:find_name_1}
 \end{figure}
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Find_time.png}
+    \includegraphics[width=0.75\linewidth]{find_time_1.png}
     \caption{根据修改时间搜索}
-    \label{fig:find time}
+    \label{fig:find_time_1}
 \end{figure}
 
 \subsection{定义函数}
@@ -175,9 +176,9 @@ man也有替代品，比如tldr。tldr是Too Long; Didn’t Read的缩写，能�
 在shell中定义了mcd函数，可以在创建文件夹后进入该文件夹。这样定义的函数在退出shell后就会被销毁。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Function.png}
+    \includegraphics[width=0.75\linewidth]{function_1.png}
     \caption{function}
-    \label{fig:function}
+    \label{fig:function_1}
 \end{figure}
 
 \subsection{shell中的特殊变量}
@@ -194,39 +195,40 @@ man也有替代品，比如tldr。tldr是Too Long; Didn’t Read的缩写，能�
 marco脚本中的\mintinline{shell}|export|将MARCO移动到子进程，\verb|$|能用命令的输出结果替换\verb|$|语句，即将当前所在的路径存进了MARCO变量。polo脚本则获取MARCO变量的值，再切换到这个目录。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Marco.png}
+    \includegraphics[width=0.75\linewidth]{marco_1.png}
     \caption{脚本内容}
-    \label{fig:Marco}
+    \label{fig:marco_1}
 \end{figure}
+
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Polo.png}
+    \includegraphics[width=0.75\linewidth]{polo_1.png}
     \caption{脚本效果}
-    \label{fig:Polo}
+    \label{fig:polo_1}
 \end{figure}
 
 \subsection{记录某一脚本运行次数}
 用for循环，每循环一次进行一次计数，要注意shell语言的特殊符号。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Debug.png}
+    \includegraphics[width=0.75\linewidth]{debug_1.png}
     \caption{计数脚本}
-    \label{fig:Debug}
+    \label{fig:debug_1}
 \end{figure}
 
 \subsection{查找文件夹内某一类型的文件并进行压缩}
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Html.png}
+    \includegraphics[width=0.75\linewidth]{html_1.png}
     \caption{原有文件}
-    \label{fig:html}
+    \label{fig:html_1}
 \end{figure}
 对文件夹内的html文件进行压缩，使用以下的命令：
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Tar.png}
+    \includegraphics[width=0.75\linewidth]{tar_1.png}
     \caption{压缩命令}
-    \label{fig:tar}
+    \label{fig:tar_1}
 \end{figure}
 
 .表示在当前目录下进行搜索，-type f指定搜索类型为文件，-name "*.html"代表搜索后缀名为html的文件，xargs将find搜索到的文件名以\verb|\n|分割，作为参数给tar，tar的-v表示将压缩的信息显示出来。
@@ -235,13 +237,13 @@ marco脚本中的\mintinline{shell}|export|将MARCO移动到子进程，\verb|$|
 移动文件：\mintinline{shell}|mv|。其衍生用法是对文件名进行修改，因为在移动文件时能顺带对其名称进行修改。不过要注意的是新文件名不能存在，否则就可能覆盖那个文件。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Mv.png}
+    \includegraphics[width=0.75\linewidth]{mv_1.png}
     \caption{修改文件名}
-    \label{fig:mv}
+    \label{fig:mv_1}
 \end{figure}
 
 \subsection{查看软件位置}
-用于查找软件的目录，源代码或是手册页的位置。当需要知道python解释器的路径以添加至python脚本的shebang行时，whereis命令能帮上大忙。当解释器的路径被添加至shebang行后，就能直接通过\mintinline{shell}|./<script name>|来直接运行脚本，而不用添加 python3 。
+用于查找软件的目录，源代码或是手册页的位置。当需要知道Python解释器的路径以添加至Python脚本的shebang行时，whereis命令能帮上大忙。当解释器的路径被添加至shebang行后，就能直接通过\mintinline{shell}|./<script name>|来直接运行脚本，而不用添加 Python3 。
 
 \subsection{查看历史命令，操作缓冲区，执行重复命令}
 输入\mintinline{shell}|history|可以看到历史命令。使用Linux时输入的命令都储存在缓冲区中，\mintinline{shell}|history|能访问缓冲区并列出这些命令，可以使用\mintinline{shell}|history -w|保存缓冲区至.bash\_history文件，或使用\mintinline{shell}|history -c|清除缓冲区。
@@ -250,39 +252,39 @@ marco脚本中的\mintinline{shell}|export|将MARCO移动到子进程，\verb|$|
 还可以与grep配合，搜索与某个关键词匹配的命令。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{History.png}
+    \includegraphics[width=0.75\linewidth]{history_1.png}
     \caption{history}
-    \label{fig:history}
+    \label{fig:history_1}
 \end{figure}
 
 \subsection{自定义shell}
 zsh相对于bash是更优的shell选择，先修改默认shell为zsh。下载zsh并设置为默认shell，完成后一定要重新登录，才会看到shell为zsh。
 \begin{listing}[htb]
-\begin{minted}{shell}
-安装zsh：sudo pacman -S zsh
-列出已安装的shell路径：sudo chsh -l
-修改默认shell：sudo chsh --shell <path to shell>
-\end{minted}
+    \begin{minted}{shell}
+    安装zsh：sudo pacman -S zsh
+    列出已安装的shell路径：sudo chsh -l
+    修改默认shell：sudo chsh --shell <path to shell>
+    \end{minted}
 \end{listing}
 
 接下来就是对zsh的自定义了。首先是安装Powerlevel10k，一个zsh主题，能够显示许多有用的信息，使用以下命令进行安装：
 \begin{listing}[htb]
-\begin{minted}{shell}
-yay -S --noconfirm zsh-theme-powerlevel10k-git
-echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.
-zsh-theme' >>~/.zshrc
-\end{minted}
+    \begin{minted}{shell}
+    yay -S --noconfirm zsh-theme-powerlevel10k-git
+    echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.
+    zsh-theme' >>~/.zshrc
+    \end{minted}
 \end{listing}
 
 接着安装自动补全插件zsh-autosuggestions和快速导航插件autojump。
 自动补全插件能显示推测的命令，通过右方向键接受建议，能大大提升命令效率。快速导航插件能根据子文件名进行导航，不需要输入完整路径。不过autojump很久未更新了，可能有一些问题。
 \begin{listing}[htb]
-\begin{minted}{shell}
-sudo pacman -S zsh-autosuggestions
-git clone git://github.com/wting/autojump.git
-cd autojump
-./install.py or ./uninstall.py
-\end{minted}
+    \begin{minted}{shell}
+    sudo pacman -S zsh-autosuggestions
+    git clone git://github.com/wting/autojump.git
+    cd autojump
+    ./install.py or ./uninstall.py
+    \end{minted}
 \end{listing}
 
 \section{Vim学习感悟}
@@ -293,9 +295,9 @@ Vim的使用方式往往让初学者感到疑惑，插入文字还要进入特�
 配合tmux这样的终端复用器，在用Vim写代码时就能做到修改后马上看到运行效果，不需要再退出Vim后再运行，可以大大提升效率。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Vim.png}
+    \includegraphics[width=0.75\linewidth]{vim_1.png}
     \caption{Vim配合tmux}
-    \label{fig:Vim}
+    \label{fig:vim_1}
 \end{figure}
 
 Vim也支持大量的自定义，可以修改下方的状态栏，显示更多的信息，也可以使用不同的主题，还可以安装自动补全插件，获得代码提示。
@@ -328,7 +330,6 @@ H，M，L分别移动到窗口的顶部，中部，底部。Ctrl-u向上滚动�
 yy复制当前行，y0复制本行开头至游标的内容，y\$复制到本行末尾。
 p粘贴至下一行，P粘贴至上一行。
 
-
 \subsection{删除操作}
 x删除光标后的字符，X删除光标前的字符。
 dl删除光标后的字符，dh删除光标前的字符，0、\$也有类似y的效果。
@@ -354,9 +355,9 @@ Ctrl-r能重做操作。
 以下是我的自定义，还没有添加插件：
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{.vimrc.png}
+    \includegraphics[width=0.75\linewidth]{.vimrc_1.png}
     \caption{配置文件}
-    \label{fig:.vimrc}
+    \label{fig:.vimrc_1}
 \end{figure}
 
 \section{数据整理学习感悟}
@@ -380,9 +381,9 @@ Ctrl-r能重做操作。
 在\mintinline{shell}|sed|中，通过使用正则表达式能够筛选出满足需要的字符，比如获取登录者的用户名。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Sed.png}
+    \includegraphics[width=0.75\linewidth]{sed_1.png}
     \caption{获取登录者的用户名}
-    \label{fig:sed}
+    \label{fig:sed_1}
 \end{figure}
 
 \subsection{对数据排序}

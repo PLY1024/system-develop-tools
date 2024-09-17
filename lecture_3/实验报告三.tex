@@ -10,7 +10,7 @@
 \usepackage{hyperref} % 网页链接
 \usepackage{fancyhdr} % 页眉页脚
 
-\title{\Huge \textbf{实验报告三 \\ 命令行环境\&python}}
+\title{\Huge \textbf{实验报告三 \\ 命令行环境\&Python}}
 \author{\textit{潘奕霖}}
 \date{https://github.com/PLY1024/system-develop-tools\\ \today}
 \pagestyle{fancy}
@@ -38,20 +38,21 @@
 \subsection{中止某个正在进行的进程}
 输入Ctrl-c会使shell向进程发送SIGINT信号，SIGINT代表SIGnal INTerrupt，用于中止进程。输入Ctrl+\verb|\|也可以中止进程，其发送的是SIGQUIT信号。进程有处理以上两个信号的能力，因此在接受信号后可能不会中止，而SIGKILL信号是进程无法处理的，在收到信号后一定会中止。
 
-\subsection{一个不会被SIGINT信号中止的python程序}
-以下是一个能处理SIGINT信号的python程序，在收到SIGINT信号后会输出
+\subsection{一个不会被SIGINT信号中止的Python程序}
+以下是一个能处理SIGINT信号的Python程序，在收到SIGINT信号后会输出
 I got a SIGINT, but I am not stopping，这时可以输入Ctrl+\verb|\|来中止这个程序，或者使用\mintinline{shell}|kill -TERM <PID>|来中止这个程序。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Sigint.png}
+    \includegraphics[width=0.75\linewidth]{Sigint_1.png}
     \caption{程序截图}
-    \label{fig:Sigint}
+    \label{fig:Sigint_1}
 \end{figure}
+
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{Ctrl.png}
+    \includegraphics[width=0.75\linewidth]{Ctrl_1.png}
     \caption{输出效果}
-    \label{fig:Ctrl}
+    \label{fig:Ctrl_1}
 \end{figure}
 
 \subsection{进程暂停与恢复}
@@ -103,6 +104,7 @@ tmux是一个终端复用工具，能开启多个会话，每个会话可以有�
     \caption{自定义效果}
     \label{fig:tmux_1}
 \end{figure}
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.75\linewidth]{tmux_2.png}
@@ -141,30 +143,30 @@ tmux是一个终端复用工具，能开启多个会话，每个会话可以有�
 这看起来是一件非常无聊的事情。首先需要修改虚拟机的ssh配置文件，\verb|sudo vim /etc/ssh/sshd_config|打开配置文件，设定端口为2222，监听地址为0.0.0.0，修改\verb|PermitRootLogin yes|与\verb|PasswordAuthentication yes|。之后再运行\mintinline{shell}|sudo systemctl status sshd|，查看ssh的状态，如果为inactive，需要\mintinline{shell}|sudo systemctl restart sshd|重新启动ssh。然后就可以再PowerShell内使用\mintinline{shell}|ssh root@localhost -p 2222|连接wsl了。
 
 \section{Python学习感悟}
-相对于C，Python是非常容易上手的，不用管头文件，不用关mian函数，直接就可以开写。而且Python没有C那样抽象的声明和定义分开的情况，对变量的初始化赋值也不用考虑先声明变量的类型，定义函数也不用管返回值的问题。最让我感到高兴的是Python的函数在\mintinline{python}|return|多个值时会自动返回一个元组，让能返回的信息大大增加，而解压赋值这个操作的存在能让我轻松获取返回值。
+相对于C，Python是非常容易上手的，不用管头文件，不用关mian函数，直接就可以开写。而且Python没有C那样抽象的声明和定义分开的情况，对变量的初始化赋值也不用考虑先声明变量的类型，定义函数也不用管返回值的问题。最让我感到高兴的是Python的函数在\mintinline{Python}|return|多个值时会自动返回一个元组，让能返回的信息大大增加，而解压赋值这个操作的存在能让我轻松获取返回值。
 
-Python的文件操作也十分简单，按行读取内容时只要使用\mintinline{python}|for|就可以，还有\mintinline{python}|with|语句帮助打开文件，为文件赋予别名，在操作完成后帮助我们关闭文件。各种模块更是让Python变得即强大又易用。
+Python的文件操作也十分简单，按行读取内容时只要使用\mintinline{Python}|for|就可以，还有\mintinline{Python}|with|语句帮助打开文件，为文件赋予别名，在操作完成后帮助我们关闭文件。各种模块更是让Python变得即强大又易用。
 
 不过要注意的是Python虽然方便，在安装时要注意环境变量的设置，在编写代码时还要注意缩进的内容，不要混用tab和空格。
 
 \section{Python知识点}
 \subsection{输入输出}
-使用\mintinline{python}|input|输入，输入的值为字符串，可以顺带输出提示信息。\mintinline{python}|print|进行输出，可以输出各种格式，还可以\mintinline{python}|end=|指定输出的结尾。
+使用\mintinline{Python}|input|输入，输入的值为字符串，可以顺带输出提示信息。\mintinline{Python}|print|进行输出，可以输出各种格式，还可以\mintinline{Python}|end=|指定输出的结尾。
 如以下的语句在输出结束后不会换行：
-\mint{python}|print("hello", end="")|
+\mint{Python}|print("hello", end="")|
 
 \subsection{格式化输出}
-python支持三种格式化输出字符串的形式，分别是\%s，format和f。
+Python支持三种格式化输出字符串的形式，分别是\%s，format和f。
 
-\%s即对应位置输出，\mintinline{python}|"Name is %(name)s and age is %(age)s"|，需在字符串后通过\%连接一个字典\mintinline{python}|% {"name": "Mike", "age": 8}|，通过键取得字典中的值，填入字符串。
+\%s即对应位置输出，\mintinline{Python}|"Name is %(name)s and age is %(age)s"|，需在字符串后通过\%连接一个字典\mintinline{Python}|% {"name": "Mike", "age": 8}|，通过键取得字典中的值，填入字符串。
 
 format支持索引填值和键填值，字符串使用format方法为其传值。
-\mint{python}|"Name is {0} {0} and age is {1}".format("Mike", 8)|
-\mint{python}|"Name is {name} and age is {age}".format(name="Mike", age=8)|
+\mint{Python}|"Name is {0} {0} and age is {1}".format("Mike", 8)|
+\mint{Python}|"Name is {name} and age is {age}".format(name="Mike", age=8)|
 
 f则可以直接将命名空间内的变量值填入字符串。
 \begin{listing}[htb]
-    \begin{minted}{python}
+    \begin{minted}{Python}
     name = input("Your name: ")
     age = input("Your age: ")
     result_4 = f"My name is {name}, my age is {age}"
@@ -174,18 +176,18 @@ f则可以直接将命名空间内的变量值填入字符串。
 \subsection{特殊的运算符}
 Python中有一些特殊的运算符和一些特殊的运算语句，提供了多样的用法。
 \begin{itemize}
-    \item 幂运算：\mintinline{python}|**|能直接实现幂运算，而C还要调用函数
-    \item 交换赋值：\mintinline{python}|x, y = y, x|直接就能交换x与y的值
+    \item 幂运算：\mintinline{Python}|**|能直接实现幂运算，而C还要调用函数
+    \item 交换赋值：\mintinline{Python}|x, y = y, x|直接就能交换x与y的值
     \item 与或非：不同于C，Python中逻辑运算使用\mintinline{shell}|and or not|三个运算符
-    \item 属于：\mintinline{python}|in|运算符用于判断前者是否是后者的一部分，且对Python内置类型都适用
-    \item 是：\mintinline{python}|is|能够判断两个变量的id值是否相同，即他们所引用的值在内存中的地址是否相同
+    \item 属于：\mintinline{Python}|in|运算符用于判断前者是否是后者的一部分，且对Python内置类型都适用
+    \item 是：\mintinline{Python}|is|能够判断两个变量的id值是否相同，即他们所引用的值在内存中的地址是否相同
     \item 集合操作：\& | - \verb|^| 在Python中属于集合操作，分别代表取交集，取并集，取差集，取对称差集，以及大于号小于号用于判断子集关系
 \end{itemize}
 
-\subsection{\mintinline{python}|if|，\mintinline{python}|while|的特殊点}
+\subsection{\mintinline{Python}|if|，\mintinline{Python}|while|的特殊点}
 不同于C，Python中的条件判断语句使用的是如下语句，用缩进和冒号分隔出不同的代码级别。
 \begin{listing}[htb]
-    \begin{minted}{python}
+    \begin{minted}{Python}
     if a == 1:
         return true
     elif a == 2:
@@ -197,7 +199,7 @@ Python中有一些特殊的运算符和一些特殊的运算语句，提供了�
 
 Python的while语句也不同于C，其还有else的分支。当while循环是由于条件语句为false而结束时，会进入else的分支，而当循环是由于break而结束时，不会进入else分支。
 \begin{listing}[htb]
-    \begin{minted}{python}
+    \begin{minted}{Python}
     while flag:
         print('1')
     else:
@@ -206,7 +208,7 @@ Python的while语句也不同于C，其还有else的分支。当while循环是�
 \end{listing}
 
 \subsection{for遍历}
-语法为\mintinline{python}|for A in B|，B为一个可迭代对象，包括列表、字典、字符串、元组、集合，A为变量名，且可以不止一个。要遍历得到数组，可以使用\mintinline{python}|range|，如\mintinline{python}|for i in range(0, 8)|可以遍历得到0到7，\mintinline{python}|range|为一个生成器，第一个参数设置起始值，第二个参数设置终点值且无法取到，第三个参数设置步长。
+语法为\mintinline{Python}|for A in B|，B为一个可迭代对象，包括列表、字典、字符串、元组、集合，A为变量名，且可以不止一个。要遍历得到数组，可以使用\mintinline{Python}|range|，如\mintinline{Python}|for i in range(0, 8)|可以遍历得到0到7，\mintinline{Python}|range|为一个生成器，第一个参数设置起始值，第二个参数设置终点值且无法取到，第三个参数设置步长。
 
 \subsection{字符串}
 Python中的字符串可以用双引号和单引号进行赋值，而不像C++中只能用双引号。Python中的字符串支持加法操作，即拼接字符串，还支持乘法以进行多次拼接。
@@ -217,30 +219,30 @@ Python中的字符串可以用双引号和单引号进行赋值，而不像C++�
     \label{fig:string_1}
 \end{figure}
 
-字符串支持索引取值和切片，能快速取得字符串的片段，还内置了许多方法，如\mintinline{python}|find replace isdigit|等。\mintinline{python}|find|方法能找到字符串中是否出现了目标字符或字符串。\mintinline{python}|replace|方法不仅能找到目标字符串，还能将其替换为其他字符串。\mintinline{python}|isdigit|方法可以检测字符串是否由纯阿拉伯数字组成，这在检测用户输入时非常有用。
+字符串支持索引取值和切片，能快速取得字符串的片段，还内置了许多方法，如\mintinline{Python}|find replace isdigit|等。\mintinline{Python}|find|方法能找到字符串中是否出现了目标字符或字符串。\mintinline{Python}|replace|方法不仅能找到目标字符串，还能将其替换为其他字符串。\mintinline{Python}|isdigit|方法可以检测字符串是否由纯阿拉伯数字组成，这在检测用户输入时非常有用。
 
 注意，在输出特殊字符，如单引号双引号时，同C一样需要加上\verb|\|。
 
 \subsection{字典}
-字典是“key:value”的键值对，key是不可变类型且不能重复。使用\mintinline{python}|dict|创建字典，可以使用for循环对字典进行遍历，取得的是字典的键，使用len方法可以取得字典键的个数。字典可以直接通过对键值对的操作进行取值和赋值，能直接创建键值对，还支持使用update方法用字典来更新字典。
+字典是“key:value”的键值对，key是不可变类型且不能重复。使用\mintinline{Python}|dict|创建字典，可以使用for循环对字典进行遍历，取得的是字典的键，使用len方法可以取得字典键的个数。字典可以直接通过对键值对的操作进行取值和赋值，能直接创建键值对，还支持使用update方法用字典来更新字典。
 
 \subsection{定义函数}
-使用\mintinline{python}|def|定义函数，在定义时会检测语法错误，定义时可以不写返回值，即返回\mintinline{python}|None|。
+使用\mintinline{Python}|def|定义函数，在定义时会检测语法错误，定义时可以不写返回值，即返回\mintinline{Python}|None|。
 \begin{listing}[htb]
-    \begin{minted}{python}
-def 函数名(参数列表):
-    函数描述
-    函数体
-    return 数据
+    \begin{minted}{Python}
+    def 函数名(参数列表):
+        函数描述
+        函数体
+        return 数据
     \end{minted}
 \end{listing}
 
 Python中的函数没有声明一说，直接定义即可，且不用显式指定返回值。
 
 \subsection{导入模块}
-使用\mintinline{python}|import ...|导入包，包括Python内置的模块，第三方模块和自定义模块。还可以使用\mintinline{python}|from ... import ...|导入某个模块中的子模块。使用模块名就可以使用模块的功能。导入一个模块中的所有内容使用的命令是\mintinline{python}|from ... import *|，也可以为模块设置别名，只要在\mintinline{python}|from|语句后加上\mintinline{python}|as ...|即可，就能使用别名调用模块。
+使用\mintinline{Python}|import ...|导入包，包括Python内置的模块，第三方模块和自定义模块。还可以使用\mintinline{Python}|from ... import ...|导入某个模块中的子模块。使用模块名就可以使用模块的功能。导入一个模块中的所有内容使用的命令是\mintinline{Python}|from ... import *|，也可以为模块设置别名，只要在\mintinline{Python}|from|语句后加上\mintinline{Python}|as ...|即可，就能使用别名调用模块。
 
-要注意的是使用\mintinline{python}|import ...|导入模块后，在使用模块时需要带上模块的全名，比如使用\mintinline{python}|import os.path|导入了os模块内的path模块，在使用path模块的\mintinline{python}|split|函数时要以\mintinline{python}|os.path.split()|的形式使用，不可省去\mintinline{shell}|os.path|。
+要注意的是使用\mintinline{Python}|import ...|导入模块后，在使用模块时需要带上模块的全名，比如使用\mintinline{Python}|import os.path|导入了os模块内的path模块，在使用path模块的\mintinline{Python}|split|函数时要以\mintinline{Python}|os.path.split()|的形式使用，不可省去\mintinline{shell}|os.path|。
 
 \subsection{PIL转换图片格式}
 用PIL模块打开图像时无需指定图片格式，直接Image.open即可，Image模块会根据图片内容自己确定打开的格式，使用save保存时也无需指定格式，由文件后缀名即可确定保存格式。
@@ -248,10 +250,10 @@ Python中的函数没有声明一说，直接定义即可，且不用显式指�
     \centering
     \subfigure[代码]{
     \label{fig:convert_1}
-    \includegraphics[width=0.4\linewidth]{convert_1.png}
+    \includegraphics[width=0.45\linewidth]{convert_1.png}
     }\subfigure[创建结果]{
     \label{fig:convert_2}
-     \includegraphics[width=0.4\linewidth]{convert_2.png}
+     \includegraphics[width=0.45\linewidth]{convert_2.png}
     }
     \caption{转换结果}
     \label{convert_2}
@@ -263,10 +265,10 @@ Python中的函数没有声明一说，直接定义即可，且不用显式指�
     \centering
     \subfigure[代码]{
     \label{fig:thumbnails_1}
-    \includegraphics[width=0.4\linewidth]{thumbnails_1.png}
+    \includegraphics[width=0.45\linewidth]{thumbnails_1.png}
     }\subfigure[创建结果]{
     \label{fig:thumbnails_2}
-     \includegraphics[width=0.4\linewidth]{thumbnails_2.png}
+     \includegraphics[width=0.45\linewidth]{thumbnails_2.png}
     }
     \caption{创建缩略图}
     \label{thmubnails}
@@ -274,7 +276,7 @@ Python中的函数没有声明一说，直接定义即可，且不用显式指�
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{thumbnails_3.png}
+    \includegraphics[width=0.4\linewidth]{thumbnails_3.png}
     \caption{缩略图}
     \label{fig:thumbnails_3}
 \end{figure}
@@ -287,10 +289,10 @@ PIL还支持对图像某一部分进行裁切，即使用crop方法，传入的�
     \centering
     \subfigure[修改图片]{
     \label{fig:modify_1}
-    \includegraphics[width=0.4\linewidth]{modify_1.png}
+    \includegraphics[width=0.45\linewidth]{modify_1.png}
     }\subfigure[修改后的图片]{
-    \label{fig:Chi}
-     \includegraphics[width=0.4\linewidth]{Chi.jpg}
+    \label{fig:Chi_1}
+     \includegraphics[width=0.45\linewidth]{Chi_1.jpg}
     }
     \caption{调整图像}
     \label{modify}
@@ -304,10 +306,10 @@ PIL还支持对图像某一部分进行裁切，即使用crop方法，传入的�
     \centering
     \subfigure[代码]{
     \label{fig:dot_line_1}
-    \includegraphics[width=0.4\linewidth]{dot_line_1.png}
+    \includegraphics[width=0.45\linewidth]{dot_line_1.png}
     }\subfigure[效果]{
     \label{fig:dot_line_2}
-     \includegraphics[width=0.4\linewidth]{dot_line_2.png}
+     \includegraphics[width=0.45\linewidth]{dot_line_2.png}
     }
     \caption{绘制点与线}
     \label{dot_line}
@@ -317,7 +319,7 @@ PIL还支持对图像某一部分进行裁切，即使用crop方法，传入的�
 使用counter函数能显示图像的轮廓，使用hist函数能绘制图像的直方图，但由于其只接受一维数组，需要对图像使用flatten函数进行压平处理。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.3\linewidth]{outline_histogram_1.png}
+    \includegraphics[width=0.4\linewidth]{outline_histogram_1.png}
     \caption{操作代码}
     \label{fig:outline_histogram_1}
 \end{figure}
@@ -326,10 +328,10 @@ PIL还支持对图像某一部分进行裁切，即使用crop方法，传入的�
     \centering
     \subfigure[轮廓图]{
     \label{fig:outline_histogram_3}
-    \includegraphics[width=0.4\linewidth]{outline_histogram_3.png}
+    \includegraphics[width=0.45\linewidth]{outline_histogram_3.png}
     }\subfigure[直方图]{
     \label{fig:outline_histogram_2}
-     \includegraphics[width=0.4\linewidth]{outline_histogram_2.png}
+     \includegraphics[width=0.45\linewidth]{outline_histogram_2.png}
     }
     \caption{处理结果}
     \label{outline_histogram}
@@ -338,28 +340,28 @@ PIL还支持对图像某一部分进行裁切，即使用crop方法，传入的�
 \subsection{对numpy数组中的图像进行缩放}
 numpy的数组对象没有对图像缩放的现成方法，需要借助PIL对图像对象的缩放方式。PIL内Image模块的fromarray函数能将numpy数组对象转换为图像对象，不过需要注意的是数组内存储的数据类型。将图片存入数组时默认以“uint8”类型储存，但也可以指定为其他数据类型，不过在转换回图片对象前需要将数据类型转换为“uint8”类型，即使用\verb|uint8(img)|函数。对“uint8”类型的数组，使用Image模块的fromarray函数就能将其转换回图像对象。一个能对数组中图像进行缩放的函数如下：
 \begin{listing}[htb]
-    \begin{minted}{python}
-        def imgresize(img,  size):
-            pil_img = Image.fromarray(uint8(img))
-            return array(pil_img.resize(size)
+    \begin{minted}{Python}
+    def imgresize(img,  size):
+        pil_img = Image.fromarray(uint8(img))
+        return array(pil_img.resize(size)
             
     \end{minted}
 \end{listing}
 
 \subsection{使用pickle保存与读取数据}
-使用pickle模块的dump和load模块可以很方便的将数据存入.pkl文件与读取，支持几乎所有的python对象，但也意味着保存的文件只能用python进行读取。以下的代码对.pkl文件进行保存与读取：
+使用pickle模块的dump和load模块可以很方便的将数据存入.pkl文件与读取，支持几乎所有的Python对象，但也意味着保存的文件只能用Python进行读取。以下的代码对.pkl文件进行保存与读取：
 \begin{listing}[htb]
-    \begin{minted}{python}
-        with open('file.pkl', 'wb') as f:
-            pickle.dump(data, f)
+    \begin{minted}{Python}
+    with open('file.pkl', 'wb') as f:
+        pickle.dump(data, f)
 
-        with open('file.pkl', 'rb') as f:
-            data = pickle.load(f)
+    with open('file.pkl', 'rb') as f:
+        data = pickle.load(f)
             
     \end{minted}
 \end{listing}
 
-打开文件时要注意模式，\mintinline{python}|'wb'|即以二进制模式打开，进行写的操作，会清空文件的内容；而\mintinline{python}|'rb'|以二进制模式打开，进行读取操作。
+打开文件时要注意模式，\mintinline{Python}|'wb'|即以二进制模式打开，进行写的操作，会清空文件的内容；而\mintinline{Python}|'rb'|以二进制模式打开，进行读取操作。
 
 除了pickle模块外，json模块也提供了序列化的功能，不过其为了维持与其他编程语言的通用性，只支持了其他语言也有的数据类型。
 

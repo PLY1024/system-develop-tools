@@ -2,6 +2,7 @@
 
 % \usepackage{ctex}
 \usepackage{graphicx} % 图片
+\usepackage{subfigure} %子图片
 \usepackage{minted} % 代码
 \usepackage{listings} % 代码
 \usepackage{enumerate} % 有序列表
@@ -36,40 +37,39 @@
 在学习中遇到的最大的坑是Overleaf作为在线编译器，为编译中文而修改编译方式需要自行寻找一番，而且使用 \url{https://oi-wiki.org/tools/latex} 中的导入包方式会直接报错，
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.5\linewidth]{Chinese.png}
+    \includegraphics[width=0.5\linewidth]{chinese_1.png}
     \caption{ \LaTeX 文档中使用中文的方法}
-    \label{fig:Chinese}
+    \label{fig:chinese_1}
 \end{figure}
 看起来Overleaf和utf-8有点矛盾。
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.5\linewidth]{Error.png}
+    \includegraphics[width=0.5\linewidth]{error_1.png}
     \caption{Overleaf的报错信息}
-    \label{fig:Error}
+    \label{fig:error_1}
 \end{figure}
 
 解决方法就是删掉[utf-8]，或者文档类型使用ctexart。
 
-Overleaf上比较折腾的是换字体。我个人不太喜欢默认的等宽字体，所以想着换成别的字体，但是上传字体之后总是一堆警告\textsuperscript{\ref{fig:Warning}}，让人很不爽，于是作罢。
+Overleaf上比较折腾的是换字体。我个人不太喜欢默认的等宽字体，所以想着换成别的字体，但是上传字体之后总是一堆警告\textsuperscript{\ref{fig:warning_1}}，让人很不爽，于是作罢。
 
 \LaTeX 的自定义功能还是比较强大的，通过引入fancyhdr包能够自定义页眉和页脚。不过要注意在自定义的命令之前要先有\mintinline{Latex}|\fancyhead{}|这样的空命令以清空原有的设置，否则会发生冲突。通过指定R、C与L可以自定义页眉页脚不同位置的信息。我让右上角显示章名，左下角显示笔记仓库，右下角显示页码。值得一提的是显示章名的命令为\mintinline{Latex}|\leftmark|，而显示节名的命令为\mintinline{Latex}|\rightmark|，不要用错了。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Custom.png}
+    \includegraphics[width=0.75\linewidth]{custom_1.png}
     \caption{自定义页眉页脚}
-    \label{fig:Custom}
+    \label{fig:custom_1}
 \end{figure}
 
 以下是我所使用的包：
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Package.png}
+    \includegraphics[width=0.5\linewidth]{package_1.png}
     \caption{使用的包}
-    \label{fig:Package}
+    \label{fig:package_1}
 \end{figure}
 
 \section{ \LaTeX 知识点}
-
 \subsection{ \LaTeX 安装}
 可以在\url{https://www.tug.org/texlive/}下载TeX Live。 \LaTeX 有众多的编译器可以使用，我选择Overleaf作为编辑器，主要是其基于云端，基本开箱即用，并且能够实时编译，极大地省去了安装本地编译器的折腾过程。而且Overleaf可以辅助插入图片和列表，极大地省去了写命令的过程。
 
@@ -134,16 +134,16 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 同样的，将字体文件上传后在文档开头添加\mintinline{Latex}|\setCJKmainfont{}|也可以修改默认字体，但是造成一堆warning。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Font.png}
+    \includegraphics[width=0.5\linewidth]{font_1.png}
     \caption{更换字体的效果}
-    \label{fig:Font}
+    \label{fig:font_1}
 \end{figure}
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Warning.png}
+    \includegraphics[width=0.5\linewidth]{warning_1.png}
     \caption{一堆警告}
-    \label{fig:Warning}
+    \label{fig:warning_1}
 \end{figure}
 
 \subsection{字体类型设置}
@@ -185,7 +185,7 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 \subsubsection{行内代码}
 \begin{itemize}
     \item \mintinline{Latex}|\verb|||：\verb|print("Man!")|
-    \item \mintinline{Latex}|\mintinline{python}|||：\mintinline{python}|print("Man!")|
+    \item \mintinline{Latex}|\mintinline{Python}|||：\mintinline{Python}|print("Man!")|
 \end{itemize}
 
 \subsubsection{代码块}
@@ -199,14 +199,14 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 通过以下代码显示带高亮的代码块：
 \begin{verbatim}
     \begin{listing}[htb]
-        \begin{minted}{python}
+        \begin{minted}{Python}
 
         \end{minted}
     \end{listing}
 \end{verbatim}
 
 \begin{listing}[htb]
-	\begin{minted}{python}
+	\begin{minted}{Python}
     import time
     print("Man!")
     \end{minted}
@@ -236,7 +236,7 @@ Overleaf编译中文时会有非常经典的“CJK”警告，原因是Fandol字
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.2\textwidth]{Big Sur.jpg}
+\includegraphics[width=0.75\textwidth]{big_sur_1.jpg}
 \caption{标题需要位于图片的下方}
 \end{figure}
 
@@ -270,7 +270,6 @@ d = {k \varphi(n) + 1} \over e
     \label{tab:my_label}
 \end{table}
 
-
 \subsection{设置引用}
 用\mintinline{Latex}|\label{label}|设置引用时的标签，用\mintinline{Latex}|\ref{label}|进行引用。
 
@@ -303,7 +302,6 @@ Git的概念比较抽象，最开始不太好理解，并且同样是一开始�
 以下是个人总结的Git使用流程：先获取一个仓库，无论是初始化本地文件夹为仓库还是克隆远程仓库；再对本地文件进行跟踪，进行一次提交，这样就对本地文件进行了一次快照；接着就可以对文件进行修改，在修改后暂存文件并进行提交。还可以连接远程仓库，将本地的修改推送到远程仓库。
 
 \section{Git知识点}
-
 \subsection{安装}
 \subsubsection{Linux}
 对于基于Debian的发行版，使用如下命令安装：\mint{shell}|sudo apt install git-all|
@@ -339,9 +337,9 @@ Windows可以访问\url{https://git-scm.com/download/win}下载 Git for Windows 
 通过以下命令查看提交日志：\mintinline{shell}|git log|，日志中HEAD所指向的是当前分支。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Git log.png}
+    \includegraphics[width=0.75\linewidth]{git_log_1.png}
     \caption{Git log}
-    \label{fig:Git log}
+    \label{fig:git_log_1}
 \end{figure}
 
 一些常用选项：
@@ -358,12 +356,12 @@ Windows可以访问\url{https://git-scm.com/download/win}下载 Git for Windows 
 
 自定义输出格式：\mintinline{shell}|git log --pretty=format:"%h %an %ad: %s"|
 \begin{itemize}
-\item \%H 显示提交的完整哈希
-\item \%h 显示提交的简写哈希
-\item  \%an 显示作者名字
-\item  \%ad 显示修改日期 
-\item  \%ar 显示距今修改日期 
-\item  \%s 显示提交说明 
+    \item \%H 显示提交的完整哈希
+    \item \%h 显示提交的简写哈希
+    \item  \%an 显示作者名字
+    \item  \%ad 显示修改日期 
+    \item  \%ar 显示距今修改日期 
+    \item  \%s 显示提交说明 
 \end{itemize}
 
 形象地显示分支变化：\mintinline{shell}|git log --graph|，可以与\mintinline{shell}|--pretty|连用。
@@ -373,11 +371,11 @@ Windows可以访问\url{https://git-scm.com/download/win}下载 Git for Windows 
 在需要初始化的文件夹下执行：\mintinline{shell}|git init|，将该文件夹初始化为Git仓库。执行以下命令来追踪指定的文件并进行初始提交。
 \mint{shell}|git add <filename>|
 \mint{shell}|git commit -m '<message>'|
-\begin{figure}
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Git init.png}
+    \includegraphics[width=0.75\linewidth]{git_init_1.png}
     \caption{Git init}
-    \label{fig:Git init}
+    \label{fig:git_init_1}
 \end{figure}
 
 \subsubsection{克隆远程仓库}
@@ -389,9 +387,9 @@ Git支持https://或SSH协议与远程仓库进行连接。
 使用\mintinline{shell}|git status|查看仓库内文件所处的状态，添加\mintinline{shell}|-s|选项使得输出更加简洁。对于一个提交后未更改文件的仓库来说，当前的工作目录是“clean”的。\mintinline{shell}|git status|命令会列出当前所在的分支，未跟踪的文件（即未被提交过的文件），与暂存中的文件（即在执行提交命令时会被提交的文件）。通过执行\mintinline{shell}|git add|对文件进行跟踪，意味着将该文件添加到下次提交的内容中。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Git status.png}
+    \includegraphics[width=0.75\linewidth]{git_status_1.png}
     \caption{Git status}
-    \label{fig:Git status}
+    \label{fig:git_status_1}
 \end{figure}
 
 注意，\mintinline{shell}|git commit -m '<message>'|命令提交的是暂存区中的文件，而非工作目录内的文件。
@@ -404,9 +402,9 @@ Git支持https://或SSH协议与远程仓库进行连接。
 提交命令\mintinline{shell}|git commit|会启动文本编辑器，添加\mintinline{shell}|-m '<message>'|可以直接输入提交说明。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Git commit.png}
+    \includegraphics[width=0.75\linewidth]{git_commit_1.png}
     \caption{Git commit}
-    \label{fig:Git commit}
+    \label{fig:git_commit_1}
 \end{figure}
 
 通过添加\mintinline{shell}|-a|选项使Git自动将已跟踪文件暂存并提交，略过\mintinline{shell}|git add|步骤。
@@ -440,9 +438,9 @@ Git支持https://或SSH协议与远程仓库进行连接。
 \mintinline{shell}|git push origin main|以将本地的main分支推送到origin仓库。\mintinline{shell}|-u|使得将来使用\mintinline{shell}|git push|即可向仓库推送更改。
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{Git push.png}
+    \includegraphics[width=0.75\linewidth]{git_push_1.png}
     \caption{Git push}
-    \label{fig:Git push}
+    \label{fig:git_push_1}
 \end{figure}
 
 \subsubsection{使用token推送项目}
